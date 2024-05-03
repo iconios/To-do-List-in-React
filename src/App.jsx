@@ -5,7 +5,6 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 
 
-const [filter, setFilter] = useState("All");
 
 // const BUTTON_DATA = [
 //   {pressed: true, stat: all},
@@ -13,17 +12,20 @@ const [filter, setFilter] = useState("All");
 //   {pressed: false, stat: completed}
 // ];
 
-const FILTER_MAP = {
-  All: () => true,
-  Active: (task) => !task.completed,
-  Completed: (task) => task.completed,
-};
-
-const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
+  const [filter, setFilter] = useState("All");
+
+  const FILTER_MAP = {
+    All: () => true,
+    Active: (task) => !task.completed,
+    Completed: (task) => task.completed,
+  };
+  
+  const FILTER_NAMES = Object.keys(FILTER_MAP);
+  
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
